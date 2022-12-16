@@ -1,0 +1,60 @@
+body {
+  background-color: $background-color;
+}
+
+.container {
+  width: $maxWidth;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  border: 1px solid $black;
+}
+
+.form-container {
+  padding: 118px 280px 90px 160px;
+}
+
+.error {
+  color: $red;
+}
+
+.horizontal-line {
+  width: 100%;
+  background-color: $gray-200;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: end;
+}
+
+label,
+input {
+  transition: all 0.15s;
+}
+
+textarea {
+  resize: none;
+  border-radius: 5px;
+  border: 2px solid $border-gray;
+  width: 100%;
+  padding: 28px 35px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  color: $gray-600;
+
+  &:focus,
+  &:active {
+    filter: drop-shadow($input-shadow);
+    outline: 1px solid $purple;
+  }
+}
+
+.custom-label {
+  display: flex;
+  img {
+    margin-right: 16px;
+  }
+}

@@ -1,0 +1,53 @@
+.checkboxes-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 26px;
+  margin-bottom: 58px;
+}
+.checkbox-container {
+  font-weight: 600;
+  font-size: 18.582px;
+  line-height: 27px;
+  background-color: $white;
+  border: 2px solid $gray-150;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 65px;
+  cursor: pointer;
+  &:has(.checkbox-input:checked) {
+    border-color: $purple;
+    filter: drop-shadow($input-shadow);
+  }
+  input:checked ~ .checkmark {
+    background-color: $purple;
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+.checkmark {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border: 2px solid $gray-150;
+  margin: 0 18px 0 20px;
+  position: relative;
+  transition: all 0.15s;
+  &::after {
+    content: '';
+    background-image: url('/src/assets/tick2.svg');
+    background-size: cover;
+    width: 15px;
+    height: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.15s;
+  }
+}
