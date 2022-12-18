@@ -11,18 +11,32 @@ const Buttons = () => {
     setStep(step - 1);
     navigate(page);
   };
+  let btnPadding;
+  if (step === 1) {
+    btnPadding = 'btn-81';
+  }
+  if (step === 2 || step === 4) {
+    btnPadding = 'btn-68';
+  }
+  if (step === 3) {
+    btnPadding = 'btn-arrow';
+  }
+  if (step === 5) {
+    btnPadding = 'btn-57';
+  }
   return (
     <>
       <hr className="horizontal-line" />
       <div className="buttons-container">
-        {step > 1 && (
+        {step === 3 && (
           <span className="btn btn--secondary" onClick={handleClick}>
-            <img className="btn__img--prev" src={Prev} alt="" /> Back
+            {step === 3 && <img className="btn__img--prev" src={Prev} alt="" />}
+            Backward
           </span>
         )}
-        <button type="submit" className="btn btn--primary">
-          {step === 5 ? 'Submit' : 'Next'}
-          <img className="btn__img--next" src={Next} alt="" />
+        <button type="submit" className={`btn btn--primary ${btnPadding}`}>
+          {step === 3 ? 'Forward' : step === 5 ? 'Submit' : 'Next'}
+          {step === 3 && <img className="btn__img--next" src={Next} alt="" />}
         </button>
       </div>
     </>

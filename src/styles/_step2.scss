@@ -1,4 +1,7 @@
 .step2 {
+  &.form-container {
+    padding: 117px 278px 85px 163px;
+  }
   .header {
     margin-bottom: 48px;
   }
@@ -47,12 +50,11 @@
       margin-right: 30px;
     }
     p {
-      margin-right: 98px;
+      margin-right: 96px;
       font-weight: 400;
       font-size: 16px;
       line-height: 23px;
       color: #929292;
-      max-width: 250px;
     }
     span {
       display: flex;

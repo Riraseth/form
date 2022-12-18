@@ -114,9 +114,6 @@ const Step5 = () => {
               customInput={<CustomInput />}
             />
           )}
-          rules={{
-            required: `The  field is required`,
-          }}
         />
         <div className="step5__radio-container">
           <RadioImg
