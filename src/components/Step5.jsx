@@ -1,8 +1,11 @@
+import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Buttons from './Buttons';
 import CustomLabel from './CustomLabel';
+import RadioImg from './RadioImg';
+import Checkboxes from './Checkboxes';
+import CustomInput from './CustomInput';
 import { useFormContext } from '../formContext';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -12,8 +15,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Unlimited from '../assets/unlimited.svg';
 import Limited from '../assets/limited.svg';
 const Step5 = () => {
-  const { setStep, formData, setFormData } = useFormContext();
-  const navigate = useNavigate();
+  const [dateRange, setDateRange] = useState([new Date(), new Date()]);
+  const [startDate, endDate] = dateRange;
+  const { formData, setFormData } = useFormContext();
 
   const schema = z.object({
     someMessage3: z.string().min(1, { message: 'Please write something' }),
@@ -46,13 +50,47 @@ const Step5 = () => {
         date: dateRange,
       };
     });
-    navigate('/5');
-    setStep(5);
   };
-  const [dateRange, setDateRange] = useState([null, null]);
-  const [startDate, endDate] = dateRange;
+
+  const plans = [
+    {
+      id: '1',
+      img: Unlimited,
+      option: 'unlimited',
+      labelText: 'Unlimited Plan',
+      description:
+        'Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu',
+    },
+    {
+      id: '2',
+      img: Limited,
+      option: 'limited',
+      labelText: 'Limited Plan',
+      description:
+        'Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu',
+    },
+  ];
+
+  const checkboxes = [
+    {
+      id: '1',
+      option: 'semanticCoding2',
+      labelText: 'Semantic coding',
+    },
+    {
+      id: '2',
+      option: 'mobileApp2',
+      labelText: 'Mobile APP',
+    },
+    {
+      id: '3',
+      option: 'mobileDesign2',
+      labelText: 'Mobile Design',
+    },
+  ];
+
   return (
-    <div className="form-container step3">
+    <div className="form-container step5">
       <form onSubmit={handleSubmit(handleSave)}>
         <Header
           h1="Complete Final Step"
@@ -73,6 +111,7 @@ const Step5 = () => {
                 setDateRange(e);
                 field.onChange(e);
               }}
+              customInput={<CustomInput />}
             />
           )}
           rules={{
@@ -80,79 +119,21 @@ const Step5 = () => {
           }}
         />
         <div className="step5__radio-container">
-          <label htmlFor="unlimited" className="step5__radio">
-            <img src={Unlimited} alt="" />
-            Unlimited Plan
-            <input
-              {...register('plan', { required: true })}
-              type="radio"
-              value="unlimited"
-              className="form-check-input"
-              id="unlimited"
-              defaultChecked={formData.plan === 'unlimited'}
-            />
-            <span className="step5__checkmark"></span>
-          </label>
-          <label htmlFor="limited" className="step5__radio">
-            <img src={Limited} alt="" />
-            Freelancing Services
-            <input
-              {...register('plan', { required: true })}
-              type="radio"
-              value="limited"
-              className="form-check-input"
-              id="limited"
-              defaultChecked={formData.plan === 'limited'}
-            />
-            <span className="step5__checkmark"></span>
-          </label>
+          <RadioImg
+            data={plans}
+            errors={errors}
+            register={register}
+            name="plan"
+          />
         </div>
         <CustomLabel text="Optimization and Accessibility" />
-        <div className="step5__additional-services checkboxes-wrapper">
-          <label className="step5__checkbox-container checkbox-container">
-            <input
-              className="checkbox-input"
-              type="checkbox"
-              id="semanticCoding2"
-              {...register('semanticCoding2')}
-              defaultChecked={formData.semanticCoding2}
-              hidden
-            />
-            <span className="checkmark"></span>
-            Semantic coding
-          </label>
-          <label className="step5__checkbox-container checkbox-container">
-            <input
-              className="checkbox-input"
-              type="checkbox"
-              id="mobileApp2"
-              {...register('mobileApp2')}
-              defaultChecked={formData.mobileApp2}
-              hidden
-            />
-            <span className="checkmark"></span>
-            Mobile APP
-          </label>
-          <label className="step5__checkbox-container checkbox-container">
-            <input
-              className="checkbox-input"
-              type="checkbox"
-              id="mobileDesign2"
-              {...register('mobileDesign2')}
-              defaultChecked={formData.mobileDesign2}
-              hidden
-            />
-            <span className="checkmark"></span>
-            Mobile Design
-          </label>
-        </div>
+        <Checkboxes checkboxes={checkboxes} register={register} />
         <textarea
           name="someMessage3"
           id="someMessage3"
-          cols="30"
-          rows="10"
           {...register('someMessage3', { required: true })}
           defaultValue={formData.someMessage3}
+          placeholder="Some words"
         ></textarea>
         {errors.someMessage3?.message && (
           <p className="error">{errors.someMessage3?.message}</p>

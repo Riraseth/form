@@ -1,0 +1,57 @@
+.react-datepicker {
+  &__input-container {
+    input {
+      width: 100%;
+      height: 69px;
+      padding-left: 120px;
+      cursor: pointer;
+      position: relative;
+      border: 2px solid $border-gray;
+      border-radius: 5px;
+      &:hover,
+      &:focus-visible {
+        outline: $outline;
+        box-shadow: $input-shadow;
+      }
+    }
+  }
+  &__custom-input {
+    position: relative;
+  }
+  &__icon,
+  &__line,
+  &__custom-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    pointer-events: none;
+    z-index: 1;
+  }
+  &__icon {
+    width: 18px;
+    height: 20px;
+    left: 37px;
+  }
+  &__line {
+    display: inline-block;
+    height: 18px;
+    width: 2px;
+    background-color: #e0e0e0;
+    left: 88px;
+  }
+  &__custom-btn {
+    right: 18px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    color: $gray-400;
+    background-color: #efefef;
+    display: flex;
+    height: 39px;
+    width: 109px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+}

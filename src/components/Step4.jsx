@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import MySelect from './MySelect';
 import CustomLabel from './CustomLabel';
+import Checkboxes from './Checkboxes';
 import { useState } from 'react';
 import Budget from '../assets/budget.svg';
 import Chat from '../assets/chat.svg';
@@ -45,7 +46,6 @@ const Step4 = () => {
     });
     navigate('/5');
     setStep(5);
-    console.log(res);
   };
 
   const { field } = useController({ name: 'country', control });
@@ -68,6 +68,24 @@ const Step4 = () => {
     field.onChange(e.value);
     setSupport(e.value);
   };
+
+  const checkboxes = [
+    {
+      id: '1',
+      option: 'semanticCoding',
+      labelText: 'Semantic coding',
+    },
+    {
+      id: '2',
+      option: 'mobileApp',
+      labelText: 'Mobile APP',
+    },
+    {
+      id: '3',
+      option: 'mobileDesign',
+      labelText: 'Mobile Design',
+    },
+  ];
 
   return (
     <div className="form-container step4">
@@ -98,45 +116,9 @@ const Step4 = () => {
             field={field}
           />
         </div>
+
         <CustomLabel text="Optimization and Accessibility" />
-        <div className="step4__additional-services checkboxes-wrapper">
-          <label className="step4__checkbox-container checkbox-container">
-            <input
-              className="checkbox-input"
-              type="checkbox"
-              id="semanticCoding"
-              {...register('semanticCoding')}
-              defaultChecked={formData.semanticCoding}
-              hidden
-            />
-            <span className="checkmark"></span>
-            Semantic coding
-          </label>
-          <label className="step4__checkbox-container checkbox-container">
-            <input
-              className="checkbox-input"
-              type="checkbox"
-              id="mobileApp"
-              {...register('mobileApp')}
-              defaultChecked={formData.mobileApp}
-              hidden
-            />
-            <span className="checkmark"></span>
-            Mobile APP
-          </label>
-          <label className="step4__checkbox-container checkbox-container">
-            <input
-              className="checkbox-input"
-              type="checkbox"
-              id="mobileDesign"
-              {...register('mobileDesign')}
-              defaultChecked={formData.mobileDesign}
-              hidden
-            />
-            <span className="checkmark"></span>
-            Mobile Design
-          </label>
-        </div>
+        <Checkboxes checkboxes={checkboxes} register={register} />
         <CustomLabel img={Chat2} text="Write Somthing note" />
         <textarea
           name="someMessage2"

@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Buttons from './Buttons';
+import SimpleRadio from './SimpleRadio';
 import { useFormContext } from '../formContext';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -12,7 +13,10 @@ const Step2 = () => {
   const navigate = useNavigate();
 
   const schema = z.object({
-    name: z.string().min(1, { message: 'Required' }),
+    name: z
+      .string()
+      .min(1, { message: 'Required' })
+      .regex(new RegExp('^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$')),
     email: z.string().email(),
     phone: z.string().min(9).max(13, {
       message: 'Incorrect number',
@@ -24,6 +28,19 @@ const Step2 = () => {
         message: 'Please pick one',
       }),
   });
+
+  const genders = [
+    {
+      id: '1',
+      gender: 'male',
+      labelText: 'Male',
+    },
+    {
+      id: '2',
+      gender: 'female',
+      labelText: 'Female',
+    },
+  ];
 
   const {
     register,
@@ -43,6 +60,25 @@ const Step2 = () => {
     navigate('/3');
     setStep(3);
   };
+
+  const inputs = [
+    {
+      id: '1',
+      placeholder: 'First and last Name',
+      value: 'name',
+    },
+    {
+      id: '2',
+      placeholder: 'Email Address',
+      value: 'email',
+    },
+    {
+      id: '3',
+      placeholder: 'Phone',
+      value: 'phone',
+    },
+  ];
+
   return (
     <div className="form-container step2">
       <form onSubmit={handleSubmit(handleSave)}>
@@ -53,65 +89,31 @@ const Step2 = () => {
           pertinacia eu vel."
         />
         <div className="step2__inputs-container">
-          <input
-            {...register('name', { required: true })}
-            placeholder="First and last Name"
-            type="text"
-            defaultValue={formData.name}
-          />
-          {errors.name?.message && (
-            <p className="error">{errors.name?.message}</p>
-          )}
-          <input
-            {...register('email', { required: true })}
-            placeholder="Email Address"
-            type="text"
-            defaultValue={formData.email}
-          />
-          {errors.email?.message && (
-            <p className="error">{errors.email?.message}</p>
-          )}
-          <input
-            {...register('phone', { required: true })}
-            placeholder="Phone"
-            type="text"
-            defaultValue={formData.phone}
-          />
-          {errors.phone?.message && (
-            <p className="error">{errors.phone?.message}</p>
-          )}
+          {inputs.map((item) => {
+            return (
+              <span key={item.id}>
+                <input
+                  {...register(item.value, { required: true })}
+                  placeholder={item.placeholder}
+                  type="text"
+                  defaultValue={formData[item.value]}
+                />
+                {errors[item.value]?.message && (
+                  <p className="error">{errors[item.value]?.message}</p>
+                )}
+              </span>
+            );
+          })}
+          {}
         </div>
         <div className="step2__radio-container">
           <h4>Gender</h4>
-          <label htmlFor="male" className="step2__radio">
-            <input
-              {...register('gender', { required: true })}
-              type="radio"
-              value="male"
-              className="form-check-input"
-              id="male"
-              defaultChecked={formData.gender === 'male'}
-              hidden
-            />
-            <span className="step2__checkmark"></span>
-            Male
-          </label>
-          <label htmlFor="female" className="step2__radio">
-            <input
-              {...register('gender', { required: true })}
-              type="radio"
-              value="female"
-              className="form-check-input"
-              id="female"
-              defaultChecked={formData.gender === 'female'}
-              hidden
-            />
-            <span className="step2__checkmark"></span>
-            Female
-          </label>
-          {errors.gender?.message && (
-            <p className="error">{errors.gender?.message}</p>
-          )}
+          <SimpleRadio
+            data={genders}
+            errors={errors}
+            register={register}
+            name="gender"
+          />
         </div>
         <div className="step2__upload-container">
           <h4>Upload Documents</h4>

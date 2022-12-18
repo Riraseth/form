@@ -7,60 +7,47 @@
     margin-bottom: 10px;
   }
   h3 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+  .header {
     margin-bottom: 77px;
   }
-  &.form-container {
-    padding-left: 165px;
-    padding-right: 169px;
-  }
-  &__radio-container {
-    display: flex;
-    justify-content: space-between;
+  .img-radio {
     gap: 25px;
-  }
-  &__radio {
-    flex: 1;
-    border: 2px solid $border-gray;
-    border-radius: 7px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 230px;
-    position: relative;
-    background-color: $white;
-    font-weight: 500;
-    font-size: 23.709px;
-    line-height: 34px;
-    cursor: pointer;
-    img {
-      margin: 0 auto 12px;
-    }
-    input:checked ~ .step1__checkmark {
-      &::after {
-        content: '';
-        background-color: $blue;
-        height: 17px;
-        width: 17px;
-        border-radius: 100%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    &__item {
+      height: 230px;
+      font-weight: 500;
+      font-size: 23.709px;
+      line-height: 34px;
+      cursor: pointer;
+      img {
+        margin: 0 auto 12px;
+      }
+      input:checked ~ .img-radio__checkmark {
+        &::after {
+          content: '';
+          background-color: $blue;
+          height: 14px;
+          width: 14px;
+          border-radius: 100%;
+          top: 50%;
+          left: 50%;
+        }
       }
     }
+    &__checkmark {
+      width: 26px;
+      height: 26px;
+      background-color: $gray-100;
+      border: 2px solid $border-gray;
+      border-radius: 100%;
+      position: absolute;
+      top: 15px;
+      right: 19px;
+    }
   }
-  &__checkmark {
-    width: 26px;
-    height: 26px;
-    background-color: $gray-100;
-    border: 2px solid $border-gray;
-    border-radius: 100%;
-    position: absolute;
-    top: 15px;
-    right: 19px;
-  }
+
   .horizontal-line {
     margin: 116px 0 156px;
   }

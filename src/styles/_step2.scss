@@ -1,4 +1,7 @@
 .step2 {
+  .header {
+    margin-bottom: 48px;
+  }
   h4 {
     margin-bottom: 10px;
   }
@@ -8,50 +11,22 @@
     gap: 15px;
     margin-bottom: 50px;
     input {
-      border: 1px solid $border-gray;
+      border: 2px solid $border-gray;
       border-radius: 5px;
       padding-left: 46px;
       height: 70px;
-      &:focus,
-      &:active {
+      width: 100%;
+      &:hover,
+      &:focus-visible {
         filter: drop-shadow($input-shadow);
-        outline: 1px solid $purple;
+        outline: $outline;
       }
     }
   }
   &__radio-container {
     margin-bottom: 44px;
   }
-  &__radio {
-    font-weight: 600;
-    font-size: 19px;
-    line-height: 27px;
-    display: inline-flex;
-    align-items: center;
-    margin-right: 35px;
-    input:checked ~ .step2__checkmark {
-      &::after {
-        content: '';
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 100%;
-        background-color: $blue;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-  }
-  &__checkmark {
-    position: relative;
-    display: inline-block;
-    width: 22px;
-    height: 22px;
-    border: 1px solid $blue;
-    border-radius: 100%;
-    margin-right: 12px;
-  }
+
   &__upload-wrapper {
     background-color: $white;
     display: flex;
@@ -59,13 +34,14 @@
     justify-content: center;
     height: 120px;
     margin-bottom: 46px;
-    border: 2px solid $gray-150;
+    border: 2px solid $border-gray;
     border-radius: 5px;
   }
   &__upload {
     display: flex;
     align-items: flex-end;
     padding: 27px 36px 27px 41px;
+    width: 100%;
     cursor: pointer;
     img {
       margin-right: 30px;
@@ -76,6 +52,7 @@
       font-size: 16px;
       line-height: 23px;
       color: #929292;
+      max-width: 250px;
     }
     span {
       display: flex;
@@ -90,6 +67,7 @@
       min-width: 246px;
       height: 46px;
       padding: 0;
+      margin-left: auto;
     }
   }
   .horizontal-line {

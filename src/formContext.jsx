@@ -7,7 +7,6 @@ export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({
     service: '',
   });
-  console.log(formData);
   return (
     <formContext.Provider
       value={{

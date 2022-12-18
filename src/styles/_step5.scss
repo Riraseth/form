@@ -1,0 +1,62 @@
+.step5 {
+  .header {
+    margin-bottom: 48px;
+  }
+  .react-datepicker-wrapper {
+    margin-bottom: 36px;
+  }
+  .img-radio {
+    gap: 36px;
+    margin-bottom: 38px;
+    &__item {
+      height: 268px;
+      font-weight: 800;
+      font-size: 26px;
+      line-height: 38px;
+      color: $gray-1000;
+      justify-content: flex-end;
+      img {
+        margin: 0 auto 21px;
+      }
+      input:checked ~ .img-radio__checkmark {
+        opacity: 1;
+      }
+    }
+    &__checkmark {
+      width: 37px;
+      height: 37px;
+      position: absolute;
+      top: 17px;
+      left: 27px;
+      background-image: url('../assets/tick.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      transition: all 0.15s ease-in-out;
+      opacity: 0;
+    }
+    &__description {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+      text-align: center;
+      color: $gray-700;
+      max-width: 250px;
+      margin-bottom: 41px;
+      margin-top: 5px;
+    }
+  }
+  .checkboxes-wrapper {
+    margin-bottom: 30px;
+  }
+  .custom-label {
+    margin-bottom: 16px;
+  }
+  textarea {
+    height: 114px;
+  }
+  .horizontal-line {
+    margin-top: 71px;
+    margin-bottom: 38px;
+  }
+}

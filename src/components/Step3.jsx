@@ -52,6 +52,30 @@ const Step3 = () => {
     field.onChange(option.value);
     setLanguage(option.value);
   };
+
+  const services = [
+    {
+      id: '1',
+      option: 'webDesign1',
+      labelText: 'Web Design ',
+    },
+    {
+      id: '2',
+      option: 'webDesign2',
+      labelText: 'Web Design ',
+    },
+    {
+      id: '3',
+      option: 'webDesign3',
+      labelText: 'Web Design ',
+    },
+    {
+      id: '4',
+      option: 'webDesign4',
+      labelText: 'Web Design ',
+    },
+  ];
+
   return (
     <div className="form-container step3">
       <form onSubmit={handleSubmit(handleSave)}>
@@ -62,59 +86,27 @@ const Step3 = () => {
           pertinacia eu vel."
         />
         <div className="step3__radio-container">
-          <label htmlFor="webDesign1" className="step3__radio">
-            <input
-              {...register('serviceType', { required: true })}
-              type="radio"
-              value="webDesign1"
-              className="form-check-input"
-              id="webDesign1"
-              defaultChecked={formData.serviceType === 'webDesign1'}
-              hidden
-            />
-            <span className="step3__checkmark"></span>
-            webDesign1
-          </label>
-          <label htmlFor="webDesign2" className="step3__radio">
-            <input
-              {...register('serviceType', { required: true })}
-              type="radio"
-              value="webDesign2"
-              className="form-check-input"
-              id="webDesign2"
-              defaultChecked={formData.serviceType === 'webDesign2'}
-              hidden
-            />
-            <span className="step3__checkmark"></span>
-            webDesign2
-          </label>
-          <label htmlFor="webDesign3" className="step3__radio">
-            <input
-              {...register('serviceType', { required: true })}
-              type="radio"
-              value="webDesign3"
-              className="form-check-input"
-              id="webDesign3"
-              defaultChecked={formData.serviceType === 'webDesign3'}
-              hidden
-            />
-            <span className="step3__checkmark"></span>
-            webDesign3
-          </label>
-          <label htmlFor="webDesign4" className="step3__radio">
-            <input
-              {...register('serviceType', { required: true })}
-              type="radio"
-              name="serviceType"
-              value="webDesign4"
-              className="form-check-input"
-              id="webDesign4"
-              defaultChecked={formData.serviceType === 'webDesign4'}
-              hidden
-            />
-            <span className="step3__checkmark"></span>
-            webDesign4
-          </label>
+          {services.map((service) => {
+            return (
+              <label
+                key={service.id}
+                htmlFor={service.option}
+                className="radio"
+              >
+                <input
+                  {...register('serviceType', { required: true })}
+                  type="radio"
+                  value={service.option}
+                  id={service.option}
+                  defaultChecked={formData.serviceType === service.option}
+                  hidden
+                />
+                <span className="checkmark"></span>
+                {service.labelText}
+              </label>
+            );
+          })}
+
           {errors.serviceType?.message && (
             <p className="error">{errors.serviceType?.message}</p>
           )}

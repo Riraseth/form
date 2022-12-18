@@ -1,12 +1,8 @@
+import { useFormContext } from '../formContext';
 import Select from 'react-select';
 import Down from '../assets/down.svg';
-const MySelect = ({
-  formData,
-  defaultVal,
-  options,
-  handleSelectChange,
-  field,
-}) => {
+const MySelect = ({ defaultVal, options, handleSelectChange, field }) => {
+  const { formData } = useFormContext();
   return (
     <Select
       defaultValue={
@@ -25,12 +21,15 @@ const MySelect = ({
           ...baseStyles,
           height: '69px',
           paddingLeft: '30px',
-          border: state.isFocused ? '2px solid #6b59d3' : '2px solid #ededed',
+          outline: state.isFocused ? '1px solid #6b59d3' : '2px solid #ededed',
+          transition: 'all .15s ease-in-out',
+          borderColor: state.isFocused ? 'transparent' : 'transparent',
           boxShadow: state.isFocused
             ? '2.5px 4.33px 35px rgba(107, 89, 211, 0.169)'
             : '',
           '&:hover': {
-            border: '2px solid #6b59d3',
+            outline: '1px solid #6b59d3',
+            boxShadow: '2.5px 4.33px 35px rgba(107, 89, 211, 0.169)',
           },
           '&::after': {
             content: `''`,

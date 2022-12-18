@@ -11,7 +11,7 @@ body {
 }
 
 .form-container {
-  padding: 118px 280px 90px 160px;
+  padding: 118px 165px 85px;
 }
 
 .error {
@@ -29,8 +29,16 @@ body {
 }
 
 label,
-input {
-  transition: all 0.15s;
+input,
+textarea {
+  transition: all 0.15s ease-in-out;
+  outline-color: transparent;
+  &:focus-visible,
+  &:active,
+  &:hover {
+    filter: drop-shadow($input-shadow);
+    outline: $outline;
+  }
 }
 
 textarea {
@@ -44,12 +52,6 @@ textarea {
   font-size: 15px;
   line-height: 25px;
   color: $gray-600;
-
-  &:focus,
-  &:active {
-    filter: drop-shadow($input-shadow);
-    outline: 1px solid $purple;
-  }
 }
 
 .custom-label {

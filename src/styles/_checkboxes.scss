@@ -3,38 +3,38 @@
   justify-content: space-between;
   align-items: center;
   gap: 26px;
-  margin-bottom: 58px;
 }
 .checkbox-container {
   font-weight: 600;
-  font-size: 18.582px;
+  font-size: 19px;
   line-height: 27px;
   background-color: $white;
-  border: 2px solid $gray-150;
+  border: 2px solid $border-gray;
+  border-radius: 5px;
   flex: 1;
   display: flex;
   align-items: center;
   height: 65px;
   cursor: pointer;
   &:has(.checkbox-input:checked) {
-    border-color: $purple;
+    outline: $outline;
     filter: drop-shadow($input-shadow);
   }
-  input:checked ~ .checkmark {
+  input:checked ~ .checkbox-checkmark {
     background-color: $purple;
     &::after {
       opacity: 1;
     }
   }
 }
-.checkmark {
+.checkbox-checkmark {
   display: inline-block;
   width: 28px;
   height: 28px;
-  border: 2px solid $gray-150;
+  border: 2px solid $border-gray;
   margin: 0 18px 0 20px;
   position: relative;
-  transition: all 0.15s;
+  transition: all 0.15s ease-in-out;
   &::after {
     content: '';
     background-image: url('/src/assets/tick2.svg');
@@ -48,6 +48,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    transition: all 0.15s;
+    transition: all 0.15s ease-in-out;
   }
 }

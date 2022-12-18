@@ -6,6 +6,7 @@ import Diagram from '../assets/diagram.png';
 import Switch from '../assets/switch.png';
 import Development from '../assets/development.png';
 import { useFormContext } from '../formContext';
+import RadioImg from './RadioImg';
 
 const Step1 = () => {
   const { setStep, formData, setFormData } = useFormContext();
@@ -19,12 +20,34 @@ const Step1 = () => {
     setFormData((prev) => {
       return {
         ...prev,
-        service: res.services,
+        service: res.service,
       };
     });
     navigate('/2');
     setStep(2);
   };
+
+  const services = [
+    {
+      id: '1',
+      img: Diagram,
+      option: 'corporate',
+      labelText: 'Corporate Services',
+    },
+    {
+      id: '2',
+      img: Switch,
+      option: 'freelancing',
+      labelText: 'Freelancing Services',
+    },
+    {
+      id: '3',
+      img: Development,
+      option: 'development',
+      labelText: 'Development',
+    },
+  ];
+
   return (
     <div className="form-container step1">
       <form onSubmit={handleSubmit(handleSave)}>
@@ -34,52 +57,13 @@ const Step1 = () => {
           concludaturque usu, facete detracto patrioque an per, lucilius
           pertinacia eu vel."
         />
-        <div className="step1__radio-container">
-          <label htmlFor="corporate" className="step1__radio">
-            <img src={Diagram} alt="" />
-            Corporate Services
-            <input
-              {...register('services', { required: true })}
-              type="radio"
-              value="corporate"
-              className="form-check-input"
-              id="corporate"
-              hidden
-              defaultChecked={formData.service === 'corporate'}
-            />
-            <span className="step1__checkmark"></span>
-          </label>
-          <label htmlFor="freelancing" className="step1__radio">
-            <img src={Switch} alt="" />
-            Freelancing Services
-            <input
-              {...register('services', { required: true })}
-              type="radio"
-              value="freelancing"
-              className="form-check-input"
-              id="freelancing"
-              hidden
-              defaultChecked={formData.service === 'freelancing'}
-            />
-            <span className="step1__checkmark"></span>
-          </label>
-          <label htmlFor="development" className="step1__radio">
-            <img src={Development} alt="" />
-            Development
-            <input
-              {...register('services', { required: true })}
-              type="radio"
-              value="development"
-              className="form-check-input"
-              id="development"
-              hidden
-              defaultChecked={formData.service === 'development'}
-            />
-            <span className="step1__checkmark"></span>
-          </label>
-        </div>
-        <div className="error">
-          {errors.services?.type === 'required' && 'This field is required'}
+        <div className="step1__radio-wrapper">
+          <RadioImg
+            data={services}
+            errors={errors}
+            register={register}
+            name="service"
+          />
         </div>
         <Buttons />
       </form>
